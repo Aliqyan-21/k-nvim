@@ -34,15 +34,15 @@ vim.api.nvim_create_autocmd('BufReadPost', {
   end,
 })
 
--- Set wrapping and spell checking for text files
-vim.api.nvim_create_autocmd('FileType', {
-  desc = 'Settings for text file types',
-  group = vim.api.nvim_create_augroup('text_file_settings', { clear = true }),
-  pattern = { 'markdown', 'text', 'tex', 'gitcommit' },
-  callback = function()
-    vim.opt_local.spell = true
-  end,
-})
+-- -- Set wrapping and spell checking for text files
+-- vim.api.nvim_create_autocmd('FileType', {
+--   desc = 'Settings for text file types',
+--   group = vim.api.nvim_create_augroup('text_file_settings', { clear = true }),
+--   pattern = { 'markdown', 'text', 'tex', 'gitcommit' },
+--   callback = function()
+--     vim.opt_local.spell = true
+--   end,
+-- })
 
 -- Enhanced TODO comment highlighting
 vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWinEnter' }, {
@@ -57,7 +57,7 @@ vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWinEnter' }, {
       highlight NoteComment guifg=#000000 guibg=#A9CBD7 gui=bold
       highlight HackComment guifg=#000000 guibg=#D3F4A9 gui=bold
       highlight PerformanceComment guifg=#000000 guibg=#DCB5CB gui=bold
-    ]]
+      ]]
 
     -- Match patterns including trailing context
     vim.fn.matchadd('TodoComment', '\\<TODO\\>.*$')
@@ -84,3 +84,24 @@ vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWinEnter' }, {
     vim.fn.matchadd('PerformanceComment', '\\<perf\\>.*$')
   end,
 })
+
+-- Fix indentation on save for specific file types
+-- vim.api.nvim_create_autocmd('BufWritePre', {
+--   desc = 'Fix file indentation according to current settings',
+--   group = vim.api.nvim_create_augroup('fix_indentation', { clear = true }),
+--   pattern = { '*.lua', '*.css', '*.html', '*.json', '*.cpp', '*.c', 'golang', 'haskell' },
+--   callback = function()
+--     -- Store cursor position
+--     local cursor_pos = vim.fn.getpos '.'
+--
+--     -- Get current view info
+--     local view = vim.fn.winsaveview()
+--
+--     -- Fix indentation based on current expandtab, tabstop, and shiftwidth settings
+--     vim.cmd 'silent! normal! gg=G'
+--
+--     -- Restore cursor position and view
+--     vim.fn.winrestview(view)
+--     vim.fn.setpos('.', cursor_pos)
+--   end,
+-- })

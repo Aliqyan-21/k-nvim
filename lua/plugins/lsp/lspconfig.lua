@@ -152,6 +152,30 @@ return {
       end,
     }
 
+    require('lspconfig').harper_ls.setup {
+      on_attach = on_attach,
+      capabilities = capabilities,
+      filetypes = { 'markdown', 'text' },
+      settings = {
+        ['harper-ls'] = {
+          -- userDictPath = '',
+          -- fileDictPath = '',
+          linters = {
+            BoringWords = true,
+            LinkingVerbs = true,
+          },
+          codeActions = {
+            ForceStable = false,
+          },
+          markdown = {
+            IgnoreLinkTitle = false,
+          },
+          diagnosticSeverity = 'hint',
+          isolateEnglish = false,
+        },
+      },
+    }
+
     -- configure lua server (with special settings)
     lspconfig['lua_ls'].setup {
       capabilities = capabilities,

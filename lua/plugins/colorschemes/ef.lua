@@ -1,6 +1,7 @@
 return {
   'oonamo/ef-themes.nvim',
-  -- priority = 1000,
+  enabled = false,
+  priority = 1000,
   config = function()
     require('ef-themes').setup {
       dark = 'ef-deuteranopia-dark', -- night, maris-dark, bio
