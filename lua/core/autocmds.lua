@@ -34,7 +34,7 @@ vim.api.nvim_create_autocmd('BufReadPost', {
   end,
 })
 
--- -- Set wrapping and spell checking for text files
+-- -- Set spell checking for text files
 -- vim.api.nvim_create_autocmd('FileType', {
 --   desc = 'Settings for text file types',
 --   group = vim.api.nvim_create_augroup('text_file_settings', { clear = true }),
@@ -51,7 +51,7 @@ vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWinEnter' }, {
   callback = function()
     -- Define highlight groups with custom colors
     vim.cmd [[
-      highlight TodoComment guifg=#000000 guibg=#fff0ab gui=bold
+      highlight TodoComment guifg=#000000 guibg=#E3CDBC gui=bold
       highlight FixmeComment guifg=#000000 guibg=#F5BE9A gui=bold
       highlight BugComment guifg=#000000 guibg=#F9665E gui=bold
       highlight NoteComment guifg=#000000 guibg=#A9CBD7 gui=bold
