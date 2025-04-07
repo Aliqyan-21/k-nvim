@@ -1,12 +1,20 @@
 return {
   'oonamo/ef-themes.nvim',
-  enabled = false,
+  enabled = true,
   priority = 1000,
   config = function()
     require('ef-themes').setup {
-      dark = 'ef-deuteranopia-dark', -- night, maris-dark, bio
-      transparent = false,
+      dark = 'ef-dream', -- night, maris-dark, bio
+      transparent = true,
+      styles = {
+        comments = { italic = true },
+        keywords = { bold = false },
+        functions = {},
+        variables = {},
+        classes = { bold = false },
+        types = { bold = false },
+      },
     }
-    -- vim.cmd.colorscheme 'ef-theme'
+    vim.cmd.colorscheme 'ef-theme'
   end,
 }

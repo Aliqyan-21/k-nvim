@@ -1,10 +1,12 @@
 local opt = vim.opt -- for conciseness
 
-vim.opt.guicursor = {
-  'n-v-c:block-blinkwait700-blinkoff400-blinkon250', -- Normal, Visual, Command-line mode with blinking block cursor
-  'i-ci-ve:block-blinkwait700-blinkoff400-blinkon250', -- Insert, Replace mode with blinking vertical bar cursor
-  'r-cr:block-blinkwait700-blinkoff400-blinkon250', -- Replace mode with blinking horizontal cursor
-}
+-- vim.opt.guicursor = {
+--   'n-v-c:block-blinkwait700-blinkoff400-blinkon250',   -- Normal, Visual, Command-line mode with blinking block cursor
+--   'i-ci-ve:block-blinkwait700-blinkoff400-blinkon250', -- Insert, Replace mode with blinking vertical bar cursor
+--   'r-cr:block-blinkwait700-blinkoff400-blinkon250',    -- Replace mode with blinking horizontal cursor
+-- }
+
+vim.opt['guicursor'] = ""
 
 -- toggle statusline
 vim.opt.laststatus = 2 -- 0 and 2
@@ -21,12 +23,12 @@ vim.opt.showmode = false
 
 -- line numbers
 opt.relativenumber = true -- show relative line numbers
-opt.number = true -- shows absolute line number on cursor line (when relative number is on)
+opt.number = true         -- shows absolute line number on cursor line (when relative number is on)
 
 -- tabs & indentation
-opt.tabstop = 2 -- 2 spaces for tabs (prettier default)
-opt.shiftwidth = 2 -- 2 spaces for indent width
-opt.expandtab = true -- expand tab to spaces
+opt.tabstop = 2       -- 2 spaces for tabs (prettier default)
+opt.shiftwidth = 2    -- 2 spaces for indent width
+opt.expandtab = true  -- expand tab to spaces
 opt.autoindent = true -- copy indent from current line when starting new one
 
 -- line wrapping
@@ -56,10 +58,6 @@ opt.cmdheight = 1
 -- backspace
 opt.backspace = 'indent,eol,start' -- allow backspace on indent, end of line or insert mode start position
 
--- split windows
-opt.splitright = true -- split vertical window to the right
-opt.splitbelow = true -- split horizontal window to the bottom
-
 -- turn off swapfile
 opt.swapfile = false
 
@@ -67,7 +65,7 @@ opt.swapfile = false
 -- opt.spelllang = en_us
 
 -- scrolling
-opt.scrolloff = 10
+-- opt.scrolloff = 10
 
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
@@ -83,9 +81,6 @@ vim.g.have_nerd_font = true
 -- Make line numbers default
 vim.opt.number = true
 vim.opt.rnu = true
--- You can also add relative line numbers, to help with jumping.
---  Experiment for yourself to see if you like it!
--- vim.opt.relativenumber = true
 
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.opt.mouse = 'a'
@@ -117,14 +112,8 @@ vim.opt.timeoutlen = 300
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 
--- Sets how neovim will display certain whitespace characters in the editor.
---  See `:help 'list'`
---  and `:help 'listchars'`
-vim.opt.list = true
-vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
-
 -- Preview substitutions live, as you type!
 vim.opt.inccommand = 'split'
 
 -- Minimal number of screen lines to keep above and below the cursor.
-vim.opt.scrolloff = 15
+-- vim.opt.scrolloff = 15

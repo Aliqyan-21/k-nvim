@@ -1,55 +1,56 @@
 return {
   {
-    "nvim-treesitter/nvim-treesitter",
-    event = { "BufReadPre", "BufNewFile" },
-    build = ":TSUpdate",
+    'nvim-treesitter/nvim-treesitter',
+    enabled = true,
+    event = { 'BufReadPre', 'BufNewFile' },
+    build = ':TSUpdate',
     dependencies = {
-      "nvim-treesitter/nvim-treesitter-textobjects",
-      "windwp/nvim-ts-autotag",
+      'nvim-treesitter/nvim-treesitter-textobjects',
+      'windwp/nvim-ts-autotag',
     },
     config = function()
       -- import nvim-treesitter plugin
-      local treesitter = require("nvim-treesitter.configs")
+      local treesitter = require 'nvim-treesitter.configs'
 
       -- configure treesitter
-      treesitter.setup({ -- enable syntax highlighting
+      treesitter.setup { -- enable syntax highlighting
         highlight = {
           enable = true,
           additional_vim_regex_highlighting = false,
         },
         -- enable indentation
-        indent = { enable = true },
+        indent = { enable = false },
         -- enable autotagging (w/ nvim-ts-autotag plugin)
         autotag = {
-          enable = true,
+          enable = false,
         },
         -- ensure these language parsers are installed
         ensure_installed = {
-          "html",
-          "css",
-          "markdown",
-          "markdown_inline",
-          "bash",
-          "lua",
-          "vim",
-          "dockerfile",
-          "gitignore",
-          "go",
-          "c",
-          "cpp",
-          "haskell",
-          "python",
+          'html',
+          'css',
+          'markdown',
+          'markdown_inline',
+          'bash',
+          'lua',
+          'vim',
+          'dockerfile',
+          'gitignore',
+          'go',
+          'c',
+          'cpp',
+          'haskell',
+          'python',
         },
         incremental_selection = {
           enable = false,
           keymaps = {
-            init_selection = "<C-space>",
-            node_incremental = "<C-space>",
+            init_selection = '<C-space>',
+            node_incremental = '<C-space>',
             scope_incremental = false,
-            node_decremental = "<bs>",
+            node_decremental = '<bs>',
           },
         },
-      })
+      }
     end,
   },
 }

@@ -50,14 +50,15 @@ vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWinEnter' }, {
   group = vim.api.nvim_create_augroup('enhanced_todo_highlights', { clear = true }),
   callback = function()
     -- Define highlight groups with custom colors
+
     vim.cmd [[
-      highlight TodoComment guifg=#000000 guibg=#E3CDBC gui=bold
-      highlight FixmeComment guifg=#000000 guibg=#F5BE9A gui=bold
-      highlight BugComment guifg=#000000 guibg=#F9665E gui=bold
-      highlight NoteComment guifg=#000000 guibg=#A9CBD7 gui=bold
-      highlight HackComment guifg=#000000 guibg=#D3F4A9 gui=bold
-      highlight PerformanceComment guifg=#000000 guibg=#DCB5CB gui=bold
-      ]]
+      highlight TodoComment  guifg=#7f897d guibg=#3a464c gui=bold
+      highlight FixmeComment guifg=#e67e80 guibg=#4a3636 gui=bold
+      highlight BugComment   guifg=#e69875 guibg=#4a3a36 gui=bold
+      highlight NoteComment  guifg=#a7c080 guibg=#36423a gui=bold
+      highlight HackComment  guifg=#dbbc7f guibg=#46423a gui=bold
+      highlight PerformanceComment guifg=#d699b6 guibg=#463a44 gui=bold
+    ]]
 
     -- Match patterns including trailing context
     vim.fn.matchadd('TodoComment', '\\<TODO\\>.*$')
