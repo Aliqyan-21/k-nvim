@@ -36,11 +36,6 @@ return {
     },
   },
 
-  -- For JSON schema support (optional but recommended)
-  {
-    "b0o/schemastore.nvim",
-  },
-
   -- For enhanced LSP UI (optional)
   {
     "nvimdev/lspsaga.nvim",
@@ -51,15 +46,6 @@ return {
     opts = {
       lightbulb = { enable = false },
       symbol_in_winbar = { enable = false },
-    },
-  },
-
-  -- Fuzzy finder (optional but useful for LSP integration)
-  {
-    "nvim-telescope/telescope.nvim",
-    branch = "0.1.x",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
     },
   },
 }

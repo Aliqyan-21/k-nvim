@@ -27,7 +27,6 @@ require("mason").setup({
 mason_lspconfig.setup({
   ensure_installed = {
     "lua_ls",  -- Lua
-    "pyright", -- Python
     -- "rust_analyzer", -- Rust
     "jsonls",  -- JSON
     "cssls",   -- CSS
@@ -75,7 +74,6 @@ mason_lspconfig.setup_handlers({
       capabilities = capabilities,
       settings = {
         json = {
-          schemas = require("schemastore").json.schemas(),
           validate = { enable = true },
         },
       },

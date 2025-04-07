@@ -59,7 +59,7 @@ cmp.setup({
 
   -- Configure experimental features
   experimental = {
-    ghost_text = true,
+    ghost_text = false,
   },
 })
 

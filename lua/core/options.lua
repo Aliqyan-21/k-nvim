@@ -9,7 +9,7 @@ local opt = vim.opt -- for conciseness
 vim.opt['guicursor'] = ""
 
 -- toggle statusline
-vim.opt.laststatus = 2 -- 0 and 2
+-- vim.opt.laststatus = 2 -- 0 and 2
 vim.opt.ruler = false
 
 -- toggle show tabs on top

@@ -29,6 +29,7 @@ keymap.set('i', 'jk', '<ESC>', { desc = 'Exit insert mode with jk' })
 
 -- clear search highlights
 keymap.set('n', '<leader>nh', ':nohl<CR>', { desc = 'Clear search highlights' })
+keymap.set('n', '<Esc>', '<cmd>nohl<CR>')
 
 -- Markdown Preview
 keymap.set('n', '<leader>ss', ':MarkdownPreviewToggle<CR>', { desc = 'Toggle Markdown Preview' })
@@ -59,8 +60,6 @@ keymap.set('n', '<leader>tn', '<cmd>tabn<CR>', { desc = 'Go to next tab' })     
 -- keymap.set("n", "<tab>", "<cmd>tabn<CR>", { desc = "Go to next tab" }) --  go to next tab
 keymap.set('n', '<leader>tp', '<cmd>tabp<CR>', { desc = 'Go to previous tab' })                 --  go to previous tab
 keymap.set('n', '<leader>tf', '<cmd>tabnew %<CR>', { desc = 'Open current buffer in new tab' }) --  move current buffer to new tab
-
-keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
 -- Diagnostic keymaps
 keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })

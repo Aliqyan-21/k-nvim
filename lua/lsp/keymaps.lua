@@ -14,7 +14,7 @@ local function setup_keymaps(client, bufnr)
   map("n", "gt", vim.lsp.buf.type_definition, "Go to type definition")
 
   map("n", "<leader>D", "<cmd>Telescope diagnostics bufnr=0<CR>") -- show  diagnostics for file
-  map("n", "<leader>d", vim.diagnostic.open_float)     -- show diagnostics for line
+  map("n", "<leader>d", vim.diagnostic.open_float)                -- show diagnostics for line
 
   -- Documentation and help
   map("n", "K", vim.lsp.buf.hover, "Show hover documentation")
@@ -36,9 +36,6 @@ local function setup_keymaps(client, bufnr)
   map("n", "<leader>f", function() vim.lsp.buf.format { async = true } end, "Format document")
 
   -- Diagnostics
-  map("n", "[d", vim.diagnostic.goto_prev, "Previous diagnostic")
-  map("n", "]d", vim.diagnostic.goto_next, "Next diagnostic")
-  map("n", "<leader>e", vim.diagnostic.open_float, "Show diagnostic in float")
   map("n", "<leader>q", vim.diagnostic.setloclist, "Set location list")
 
   -- LSP info
@@ -53,10 +50,9 @@ local function setup_keymaps(client, bufnr)
     map("n", "gp", "<cmd>Lspsaga peek_definition<CR>", "Peek definition")
     map("n", "gr", "<cmd>Lspsaga finder<CR>", "Find references")
     map("n", "<leader>rn", "<cmd>Lspsaga rename<CR>", "Rename symbol")
-    map("n", "<leader>o", "<cmd>Lspsaga outline<CR>", "Show document outline")
+    map("n", "<leader>ee", "<cmd>Lspsaga outline<CR>", "Show document outline")
     map("n", "[d", "<cmd>Lspsaga diagnostic_jump_prev<CR>", "Previous diagnostic")
     map("n", "]d", "<cmd>Lspsaga diagnostic_jump_next<CR>", "Next diagnostic")
-    map("n", "<leader>e", "<cmd>Lspsaga show_cursor_diagnostics<CR>", "Show diagnostic at cursor")
   end
 
   -- If telescope is installed, use it for certain LSP features
