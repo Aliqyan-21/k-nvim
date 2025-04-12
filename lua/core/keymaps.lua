@@ -25,7 +25,7 @@ keymap.set('n', '<leader>x', '<cmd>!chmod u+x %<CR>')
 keymap.set('n', '<leader>rr', ':%s/', opts)
 
 -- use jk to exit insert mode
-keymap.set('i', 'jk', '<ESC>', { desc = 'Exit insert mode with jk' })
+-- keymap.set('i', 'jk', '<ESC>', { desc = 'Exit insert mode with jk' })
 
 -- clear search highlights
 keymap.set('n', '<leader>nh', ':nohl<CR>', { desc = 'Clear search highlights' })

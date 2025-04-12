@@ -16,6 +16,6 @@ return {
       },
     }
     vim.cmd.colorscheme 'ef-theme'
-    vim.api.nvim_set_hl(0, '@string', {italic = true})
+    vim.api.nvim_set_hl(0, '@string', { italic = true })
   end,
 }

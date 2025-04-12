@@ -26,13 +26,13 @@ require("mason").setup({
 -- List of language servers to install and configure
 mason_lspconfig.setup({
   ensure_installed = {
-    "lua_ls",  -- Lua
+    "lua_ls", -- Lua
     -- "rust_analyzer", -- Rust
-    "jsonls",  -- JSON
-    "cssls",   -- CSS
-    "html",    -- HTML
-    "clangd",  -- C/C++
-    "gopls",   -- Go
+    "jsonls", -- JSON
+    "cssls",  -- CSS
+    "html",   -- HTML
+    "clangd", -- C/C++
+    "gopls",  -- Go
   },
   automatic_installation = true,
 })
