@@ -1,6 +1,6 @@
 return {
   'oonamo/ef-themes.nvim',
-  enabled = true,
+  enabled = false,
   priority = 1000,
   config = function()
     require('ef-themes').setup {

@@ -117,3 +117,4 @@ vim.opt.inccommand = 'split'
 
 -- Minimal number of screen lines to keep above and below the cursor.
 -- vim.opt.scrolloff = 15
+

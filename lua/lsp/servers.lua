@@ -12,6 +12,11 @@ local mason_lspconfig = require("mason-lspconfig")
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
+-- Common on_init function to set offset encoding
+local on_init = function(client)
+  client.offset_encoding = 'utf-8'
+end
+
 -- Mason LSP setup
 require("mason").setup({
   ui = {
@@ -43,6 +48,7 @@ mason_lspconfig.setup_handlers({
   function(server_name)
     lspconfig[server_name].setup({
       capabilities = capabilities,
+      on_init = on_init,  -- Set the offset encoding for all servers
     })
   end,
 
@@ -51,6 +57,7 @@ mason_lspconfig.setup_handlers({
   ["lua_ls"] = function()
     lspconfig.lua_ls.setup({
       capabilities = capabilities,
+      on_init = on_init,
       settings = {
         Lua = {
           diagnostics = {
@@ -72,6 +79,7 @@ mason_lspconfig.setup_handlers({
   ["jsonls"] = function()
     lspconfig.jsonls.setup({
       capabilities = capabilities,
+      on_init = on_init,
       settings = {
         json = {
           validate = { enable = true },
@@ -84,6 +92,7 @@ mason_lspconfig.setup_handlers({
   ["rust_analyzer"] = function()
     lspconfig.rust_analyzer.setup({
       capabilities = capabilities,
+      on_init = on_init,
       settings = {
         ["rust-analyzer"] = {
           checkOnSave = {

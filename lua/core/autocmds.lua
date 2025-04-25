@@ -1,13 +1,13 @@
--- Highlight when yanking (copying) text
---  Try it with `yap` in normal mode
---  See `:help vim.highlight.on_yank()`
-vim.api.nvim_create_autocmd('TextYankPost', {
-  desc = 'Highlight when yanking (copying) text',
-  group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
-  callback = function()
-    vim.highlight.on_yank()
-  end,
-})
+-- -- Highlight when yanking (copying) text
+-- --  Try it with `yap` in normal mode
+-- --  See `:help vim.highlight.on_yank()`
+-- vim.api.nvim_create_autocmd('TextYankPost', {
+--   desc = 'Highlight when yanking (copying) text',
+--   group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
+--   callback = function()
+--     vim.highlight.on_yank()
+--   end,
+-- })
 
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
@@ -52,12 +52,12 @@ vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWinEnter' }, {
     -- Define highlight groups with custom colors
 
     vim.cmd [[
-      highlight TodoComment  guifg=#7f897d guibg=#3a464c gui=bold
-      highlight FixmeComment guifg=#e67e80 guibg=#4a3636 gui=bold
-      highlight BugComment   guifg=#e69875 guibg=#4a3a36 gui=bold
-      highlight NoteComment  guifg=#a7c080 guibg=#36423a gui=bold
-      highlight HackComment  guifg=#dbbc7f guibg=#46423a gui=bold
-      highlight PerformanceComment guifg=#d699b6 guibg=#463a44 gui=bold
+      highlight TodoComment  guifg=#008AD8 guibg=#1c1c1c gui=bold
+      highlight FixmeComment guifg=#EB212E guibg=#1c1c1c gui=bold
+      highlight BugComment   guifg=#FC4C02 guibg=#1c1c1c gui=bold
+      highlight NoteComment  guifg=#a7c080 guibg=#1c1c1c gui=bold
+      highlight HackComment  guifg=#dbbc7f guibg=#1c1c1c gui=bold
+      highlight PerformanceComment guifg=#d699b6 guibg=#1c1c1c gui=bold
     ]]
 
     -- Match patterns including trailing context
