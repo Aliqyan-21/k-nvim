@@ -26,19 +26,8 @@ return {
         },
         -- ensure these language parsers are installed
         ensure_installed = {
-          'html',
-          'css',
-          'markdown',
-          'markdown_inline',
-          'bash',
-          'lua',
-          'vim',
-          'dockerfile',
-          'gitignore',
-          'go',
           'c',
           'cpp',
-          'haskell',
           'python',
         },
         incremental_selection = {
