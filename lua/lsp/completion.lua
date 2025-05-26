@@ -15,6 +15,15 @@ cmp.setup({
     end,
   },
 
+  window = {
+    completion = cmp.config.window.bordered({
+      border = "rounded",
+    }),
+    documentation = cmp.config.window.bordered({
+      border = "rounded",
+    }),
+  },
+
   -- Map keys for completion
   mapping = cmp.mapping.preset.insert({
     ["<C-k>"] = cmp.mapping.select_prev_item(), -- previous suggestion
@@ -63,14 +72,17 @@ cmp.setup({
   },
 })
 
--- -- Setup completion for specific filetypes: command line
--- cmp.setup.cmdline(":", {
---   mapping = cmp.mapping.preset.cmdline(),
---   sources = cmp.config.sources({
---     { name = "path" },
---     { name = "cmdline" },
---   }),
--- })
+-- Setup completion for specific filetypes: command line
+cmp.setup.cmdline(":", {
+  mapping = cmp.mapping.preset.cmdline(),
+  sources = cmp.config.sources({
+    { name = "path" },
+    { name = "cmdline" },
+  }),
+  completion = {
+    autocomplete = false,
+  }
+})
 
 -- Setup completion for search
 cmp.setup.cmdline("/", {

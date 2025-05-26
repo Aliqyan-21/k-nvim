@@ -1,156 +1,100 @@
--- Add this at the VERY TOP of your statusline.lua (before any highlights)
-vim.cmd([[
-  augroup TransparentStatusline
-    autocmd!
-    autocmd ColorScheme * lua require('core.statusline').setup_highlights()
-  augroup END
-]])
-
 local M = {}
 
+-- =====================
+-- 1. HIGHLIGHTS
+-- =====================
 function M.setup_highlights()
-  vim.cmd([[
-    " Clear all statusline highlights first
-    hi clear Statusline
-    hi clear StatuslineNC
+  -- Base statusline colors
+  vim.api.nvim_set_hl(0, "Statusline",        { bg = "NONE", fg = "#787276" })
+  vim.api.nvim_set_hl(0, "StatuslineNC",      { bg = "NONE", fg = "#787276" })
+  vim.api.nvim_set_hl(0, "StatuslineLeft",    { bg = "NONE", fg = "#787276" })
+  vim.api.nvim_set_hl(0, "StatuslineRight",   { bg = "NONE", fg = "#787276" })
+  vim.api.nvim_set_hl(0, "StatuslineMiddle",  { bg = "NONE", fg = "NONE" })
+  vim.api.nvim_set_hl(0, "StatuslineModified",{ bg = "NONE", fg = "#D19A66" })
 
-    " Transparent statusline with subtle text
-    hi! Statusline          guibg=NONE guifg=#787276
-    hi! StatuslineNC        guibg=NONE guifg=#787276
-    hi! StatuslineLeft      guibg=NONE guifg=#787276
-    hi! StatuslineRight     guibg=NONE guifg=#787276
-    hi! StatuslineMiddle    guibg=NONE guifg=NONE
-    hi! StatuslineModified  guibg=NONE guifg=#D19A66
+  -- LSP diagnostics
+  vim.api.nvim_set_hl(0, "LspError",          { bg = "NONE", fg = "#D16969" })
+  vim.api.nvim_set_hl(0, "LspWarning",        { bg = "NONE", fg = "#E5C07B" })
+  vim.api.nvim_set_hl(0, "LspInfo",           { bg = "NONE", fg = "#569CD6" })  -- Info (optional)
 
-    " Mode-specific highlights
-    hi! ModeN guibg=NONE guifg=#569CD6
-    hi! ModeI guibg=NONE guifg=#6A9955
-    hi! ModeV guibg=NONE guifg=#C586C0
-    hi! ModeC guibg=NONE guifg=#DCDCAA
-    hi! ModeR guibg=NONE guifg=#D16969
-    hi! ModeT guibg=NONE guifg=#4EC9B0
-    hi! GitBranch guibg=NONE guifg=#E5C07B
-  ]])
+  -- Mode colors
+  vim.api.nvim_set_hl(0, "ModeN", { bg = "NONE", fg = "#569CD6" })  -- Normal
+  vim.api.nvim_set_hl(0, "ModeI", { bg = "NONE", fg = "#6A9955" })  -- Insert
+  vim.api.nvim_set_hl(0, "ModeV", { bg = "NONE", fg = "#C586C0" })  -- Visual
+  vim.api.nvim_set_hl(0, "ModeC", { bg = "NONE", fg = "#DCDCAA" })  -- Command
 end
 
-M.setup_highlights()
-
+-- =====================
+-- 2. UTILITY FUNCTIONS
+-- =====================
 local function mode()
-  local modes = {
-    n = "",
-    i = "",
-    v = "",
-    V = "󰬃",
-    [""] = " ",
-    c = "",
-    R = "󰬙",
-    t = "󰬁",
-  }
-  local current_mode = vim.api.nvim_get_mode().mode
-  return string.format("%%#Mode%s# %s %%*", current_mode:upper(), modes[current_mode] or "UNKNOWN")
-end
-
--- Add mode-specific highlights (transparent background)
-vim.cmd([[
-  hi ModeN guibg=NONE guifg=#569CD6
-  hi ModeI guibg=NONE guifg=#6A9955
-  hi ModeV guibg=NONE guifg=#C586C0
-  hi ModeC guibg=NONE guifg=#DCDCAA
-  hi ModeR guibg=NONE guifg=#D16969
-  hi ModeT guibg=NONE guifg=#4EC9B0
-]])
-
-local function get_git_branch()
-  local branch = vim.b.gitsigns_head
-  if branch == nil or branch == "" then
-    return ""
-  end
-  return branch
+  local current_mode = vim.api.nvim_get_mode().mode:sub(1, 1) -- First char (n/i/v/c)
+  return string.format("%%#Mode%s#  %%*", current_mode:upper())
 end
 
 local function git_branch()
-  local branch = get_git_branch()
-  if branch == "" then
-    return ""
-  end
-  return string.format(" %%#GitBranch# %s %%*", branch)
+  local branch = vim.b.gitsigns_head or ""
+  return branch ~= "" and string.format("  %s ", branch) or ""
 end
-
--- Add git branch highlight
-vim.cmd([[
-  hi GitBranch guibg=NONE guifg=#E5C07B
-]])
 
 local function file_info()
-  local filename = vim.fn.expand("%:t")
-  if filename == "" then
-    filename = "[No Name]"
-  end
-
-  local line = vim.fn.line(".")
-  local total_lines = vim.fn.line("$")
-
-  local position
-  if line == 1 then
-    position = "[Top]"
-  elseif line == total_lines then
-    position = "[Bot]"
-  else
-    position = string.format("[%d/%d]", line, total_lines)
-  end
-
-  return position
+  local filename = vim.fn.expand("%:t")  -- Only filename, no path
+  if filename == "" then return "[No Name]" end
+  return filename
 end
 
-local function left_island()
+local function lsp_diagnostics()
+  local errors = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR })
+  local warnings = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.WARN })
+  local hints = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.HINT })  -- Optional
+  local info = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.INFO })   -- Optional
+
+  local diag = {}
+  if errors > 0 then table.insert(diag, string.format("%%#LspError# %d ", errors)) end
+  if warnings > 0 then table.insert(diag, string.format("%%#LspWarning# %d ", warnings)) end
+  if hints > 0 then table.insert(diag, string.format("%%#LspInfo# %d ", hints)) end
+  if info > 0 then table.insert(diag, string.format("%%#LspInfo# %d ", info)) end
+
+  return table.concat(diag)
+end
+
+local function position()
+  local line = vim.fn.line(".")
+  local total = vim.fn.line("$")
+  return string.format(" [%d/%d] ", line, total)
+end
+
+-- =====================
+-- 3. STATUSLINE BUILD
+-- =====================
+function M.line()
   return table.concat({
     "%#StatuslineLeft#",
     mode(),
     git_branch(),
-    "%#StatuslineModified#", -- Modified indicator
-    "%m",
-  })
-end
-
-local function right_island()
-  return table.concat({
+    "%#StatuslineModified#%m",  -- Modified indicator
+    "%#StatuslineMiddle#%=",    -- Right-align the rest
+    lsp_diagnostics(),         -- Shows errors/warnings
     "%#StatuslineRight#",
-    "%f ",
     file_info(),
+    position(),                -- Line numbers [x/y]
   })
 end
 
-function Statusline()
-  return table.concat({
-    "%#StatuslineLeft#",
-    left_island(),
-    "%#StatuslineMiddle#", -- Middle separator with transparency
-    "%=",
-    right_island(),
-  })
-end
-
-function M.line()
-  return table.concat({
-    "%#StatuslineLeft#",
-    left_island(),
-    "%#StatuslineMiddle#",
-    "%=",
-    right_island(),
-  })
-end
-
--- Set the statusline
+-- =====================
+-- 4. INITIALIZATION
+-- =====================
+M.setup_highlights()
 vim.opt.statusline = "%!v:lua.require'core.statusline'.line()"
-vim.opt.laststatus = 3
-vim.opt.showmode = false
+vim.opt.laststatus = 3  -- Global statusline
+vim.opt.showmode = false  -- Hide default mode text
 
--- Refresh on events
-vim.cmd([[
-  augroup UpdateStatusline
-    autocmd!
-    autocmd BufEnter,ModeChanged,ColorScheme * lua vim.opt.statusline = "%!v:lua.require'core.statusline'.line()"
-  augroup END
-]])
+-- Refresh on critical events
+vim.api.nvim_create_autocmd({ "ColorScheme", "BufEnter", "ModeChanged", "DiagnosticChanged" }, {
+  callback = function()
+    M.setup_highlights()
+    vim.opt.statusline = "%!v:lua.require'core.statusline'.line()"
+  end,
+})
 
 return M

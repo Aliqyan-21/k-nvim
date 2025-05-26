@@ -6,6 +6,13 @@ local opts = { noremap = true, silent = true }
 -- Set leader key to space
 vim.g.mapleader = ' '
 
+-- jump forward
+keymap.set('n', '<C-p>', '<C-i>')
+
+-- next search result in middle of screen
+keymap.set('n', 'n', 'nzz')
+keymap.set('n', 'N', 'Nzz')
+
 -- Move lines
 keymap.set('v', 'J', ":m '>+1<CR>gv=gv", opts)
 keymap.set('v', 'K', ":m '<-2<CR>gv=gv", opts)
