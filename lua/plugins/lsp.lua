@@ -39,6 +39,7 @@ return {
   -- For enhanced LSP UI (optional)
   {
     "nvimdev/lspsaga.nvim",
+    enabled = false,
     dependencies = {
       "nvim-tree/nvim-web-devicons",
       "nvim-treesitter/nvim-treesitter",
