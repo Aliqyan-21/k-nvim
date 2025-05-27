@@ -4,9 +4,8 @@ return {
   enabled = true,
   name = "rose-pine",
   config = function()
-
     require("rose-pine").setup({
-      variant = "moon",    -- auto, main, moon, or dawn
+      variant = "moon",      -- auto, main, moon, or dawn
       dark_variant = "moon", -- main, moon, or dawn
       dim_inactive_windows = false,
       extend_background_behind_borders = true,
@@ -67,8 +66,12 @@ return {
       -- NOTE: Highlight groups are extended (merged) by default. Disable this
       -- per group via `inherit = false`
       highlight_groups = {
-        Comment = { italic = true },
-        String = { italic = true },
+        Comment    = { italic = true },
+        String     = { italic = true },
+        DiffAdd    = { fg = "leaf", bg = "none" }, -- Greenish for added lines
+        DiffChange = { fg = "gold", bg = "none" }, -- Yellow for changed lines
+        DiffDelete = { fg = "love", bg = "none" }, -- Reddish for deleted lines
+        DiffText   = { fg = "rose", bg = "none" }, -- Pink for changed text
         -- StatusLine = { fg = "love", bg = "love", blend = 15 },
         -- VertSplit = { fg = "muted", bg = "muted" },
         -- Visual = { fg = "base", bg = "text", inherit = false },
