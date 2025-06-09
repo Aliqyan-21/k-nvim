@@ -31,13 +31,12 @@ require("mason").setup({
 -- List of language servers to install and configure
 mason_lspconfig.setup({
   ensure_installed = {
-    "lua_ls", -- Lua
-    -- "rust_analyzer", -- Rust
-    "jsonls", -- JSON
-    "cssls",  -- CSS
-    "html",   -- HTML
-    "clangd", -- C/C++
-    "gopls",  -- Go
+    "lua_ls",        -- Lua
+    "jsonls",        -- JSON
+    "cssls",         -- CSS
+    "html",          -- HTML
+    "clangd",        -- C/C++
+    "gopls",         -- Go
   },
   automatic_installation = true,
 })
@@ -48,7 +47,7 @@ mason_lspconfig.setup_handlers({
   function(server_name)
     lspconfig[server_name].setup({
       capabilities = capabilities,
-      on_init = on_init,  -- Set the offset encoding for all servers
+      on_init = on_init, -- Set the offset encoding for all servers
     })
   end,
 
@@ -83,24 +82,6 @@ mason_lspconfig.setup_handlers({
       settings = {
         json = {
           validate = { enable = true },
-        },
-      },
-    })
-  end,
-
-  -- Rust with specific settings
-  ["rust_analyzer"] = function()
-    lspconfig.rust_analyzer.setup({
-      capabilities = capabilities,
-      on_init = on_init,
-      settings = {
-        ["rust-analyzer"] = {
-          checkOnSave = {
-            command = "clippy",
-          },
-          procMacro = {
-            enable = true,
-          },
         },
       },
     })

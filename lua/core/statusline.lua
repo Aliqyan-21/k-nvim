@@ -20,8 +20,8 @@ function M.setup_highlights()
   -- Mode colors
   vim.api.nvim_set_hl(0, "ModeN", { bg = "NONE", fg = "#569CD6" }) -- Normal
   vim.api.nvim_set_hl(0, "ModeI", { bg = "NONE", fg = "#6A9955" }) -- Insert
-  vim.api.nvim_set_hl(0, "ModeV", { bg = "NONE", fg = "#C586C0" }) -- Visual
-  vim.api.nvim_set_hl(0, "ModeC", { bg = "NONE", fg = "#DCDCAA" }) -- Command
+  vim.api.nvim_set_hl(0, "ModeV", { bg = "NONE", fg = "#44D62C" }) -- Visual
+  vim.api.nvim_set_hl(0, "ModeC", { bg = "NONE", fg = "#FFB673" }) -- Command
 end
 
 -- =====================
