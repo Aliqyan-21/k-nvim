@@ -1,5 +1,30 @@
 local opt = vim.opt -- for conciseness
 
+-- Don't redraw during macros/scripts
+opt.lazyredraw = true
+-- Faster terminal connection
+opt.ttyfast = true
+
+-- Make jumplist behave like a stack
+opt.jumpoptions = 'stack'
+
+-- wraps the search
+opt.wrapscan = false
+
+-- regex in search
+opt.magic = true
+
+opt.list = true
+---@diagnostic disable-next-line
+opt.listchars = {
+  trail = ".",
+  tab = "- ",
+  nbsp = "⎵",
+  extends = "❯",
+  precedes = "❮",
+  -- eol = "¬",
+}
+
 -- vim.opt.guicursor = {
 --   'n-v-c:block-blinkwait700-blinkoff400-blinkon250',   -- Normal, Visual, Command-line mode with blinking block cursor
 --   'i-ci-ve:block-blinkwait700-blinkoff400-blinkon250', -- Insert, Replace mode with blinking vertical bar cursor

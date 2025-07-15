@@ -5,7 +5,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   desc = 'Highlight when yanking (copying) text',
   group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
   callback = function()
-    vim.highlight.on_yank({ timeout = 100 })
+    vim.highlight.on_yank({ timeout = 150 })
   end,
 })
 
@@ -44,7 +44,7 @@ vim.api.nvim_create_autocmd('BufReadPost', {
 --   end,
 -- })
 
--- Enhanced TODO comment highlighting
+-- Todo comment highlighting
 vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWinEnter' }, {
   desc = 'Enhanced TODO comment highlighting',
   group = vim.api.nvim_create_augroup('enhanced_todo_highlights', { clear = true }),
@@ -86,23 +86,9 @@ vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWinEnter' }, {
   end,
 })
 
--- Fix indentation on save for specific file types
--- vim.api.nvim_create_autocmd('BufWritePre', {
---   desc = 'Fix file indentation according to current settings',
---   group = vim.api.nvim_create_augroup('fix_indentation', { clear = true }),
---   pattern = { '*.lua', '*.css', '*.html', '*.json', '*.cpp', '*.c', 'golang', 'haskell' },
---   callback = function()
---     -- Store cursor position
---     local cursor_pos = vim.fn.getpos '.'
---
---     -- Get current view info
---     local view = vim.fn.winsaveview()
---
---     -- Fix indentation based on current expandtab, tabstop, and shiftwidth settings
---     vim.cmd 'silent! normal! gg=G'
---
---     -- Restore cursor position and view
---     vim.fn.winrestview(view)
---     vim.fn.setpos('.', cursor_pos)
---   end,
--- })
+-- trailing whitespace remove in whole file
+vim.keymap.set('n', '<Leader>wns', function()
+  vim.cmd [[%s/\s\+$//e]]
+end, { desc = 'Trim trailing whitespace' })
+
+vim.cmd [[autocmd BufRead,BufNewFile *.sd7 set filetype=seed7]]

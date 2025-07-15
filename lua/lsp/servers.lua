@@ -31,12 +31,13 @@ require("mason").setup({
 -- List of language servers to install and configure
 mason_lspconfig.setup({
   ensure_installed = {
-    "lua_ls",        -- Lua
-    "jsonls",        -- JSON
-    "cssls",         -- CSS
-    "html",          -- HTML
-    "clangd",        -- C/C++
-    "gopls",         -- Go
+    "lua_ls", -- Lua
+    "jsonls", -- JSON
+    "cssls",  -- CSS
+    "html",   -- HTML
+    "clangd", -- C/C++
+    "gopls",  -- Go
+    -- "nim_langserver",  -- manually
   },
   automatic_installation = true,
 })
@@ -86,4 +87,23 @@ mason_lspconfig.setup_handlers({
       },
     })
   end,
+
+  ["nim_langserver"] = function()
+    lspconfig.nim_langserver.setup({
+      capabilities = capabilities,
+      on_init = on_init,
+      cmd = { "nimlangserver" },
+      filetypes = { "nim", "nimrod" },
+      settings = {
+        nim = {
+          nimsuggestPath = "/home/aliqyanabid/.nimble/bin/nimsuggest",
+        },
+      },
+    })
+  end,
 })
+
+-- for those creepy logs of lsp
+vim.lsp.handlers["window/showMessage"] = function() end
+vim.lsp.handlers["window/logMessage"] = function() end
+vim.lsp.handlers["$/progress"] = function() end  -- Disable progress notifications

@@ -1,7 +1,6 @@
--- lua/plugins/rose-pine.lua
 return {
   "rose-pine/neovim",
-  enabled = true,
+  enabled = false,
   name = "rose-pine",
   config = function()
     require("rose-pine").setup({
@@ -68,10 +67,10 @@ return {
       highlight_groups = {
         Comment    = { italic = true },
         String     = { italic = true },
-        DiffAdd    = { fg = "leaf", bg = "none" }, -- Greenish for added lines
-        DiffChange = { fg = "gold", bg = "none" }, -- Yellow for changed lines
-        DiffDelete = { fg = "love", bg = "none" }, -- Reddish for deleted lines
-        DiffText   = { fg = "rose", bg = "none" }, -- Pink for changed text
+        DiffAdd    = { fg = "leaf", bg = "none", inherit = false },
+        DiffChange = { fg = "gold", bg = "none", inherit = false },
+        DiffDelete = { fg = "love", bg = "none", inherit = false },
+        DiffText   = { fg = "rose", bg = "none", inherit = false },
         -- StatusLine = { fg = "love", bg = "love", blend = 15 },
         -- VertSplit = { fg = "muted", bg = "muted" },
         -- Visual = { fg = "base", bg = "text", inherit = false },
