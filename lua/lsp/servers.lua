@@ -106,4 +106,4 @@ mason_lspconfig.setup_handlers({
 -- for those creepy logs of lsp
 vim.lsp.handlers["window/showMessage"] = function() end
 vim.lsp.handlers["window/logMessage"] = function() end
-vim.lsp.handlers["$/progress"] = function() end  -- Disable progress notifications
+vim.lsp.handlers["$/progress"] = function() end -- Disable progress notifications
