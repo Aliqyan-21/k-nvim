@@ -1,6 +1,6 @@
 return {
   "loctvl842/monokai-pro.nvim",
-  enabled = true,
+  enabled = false,
   lazy = false,
   priority = 1000,
   config = function()
