@@ -53,7 +53,7 @@ local server_configs = {
 
 -- Mason-LSPconfig setup
 mason_lspconfig.setup({
-  ensure_installed = { "lua_ls", "jsonls", "cssls", "html", "clangd", "gopls" }, -- Removed lua_ls
+  ensure_installed = { "lua_ls", "jsonls", "cssls", "html", "clangd", "gopls", "zls" },
   automatic_installation = true,
   automatic_enable = false                                                       -- Prevents automatic setup
 })
