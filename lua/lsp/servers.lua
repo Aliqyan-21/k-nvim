@@ -55,7 +55,7 @@ local server_configs = {
 mason_lspconfig.setup({
   ensure_installed = { "lua_ls", "jsonls", "cssls", "html", "clangd", "gopls", "zls" },
   automatic_installation = true,
-  automatic_enable = false                                                       -- Prevents automatic setup
+  automatic_enable = false -- Prevents automatic setup
 })
 
 -- Get installed servers

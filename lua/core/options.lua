@@ -1,9 +1,24 @@
 local opt = vim.opt -- for conciseness
 
+-- not sure
+vim.g.loaded_python_provider = 0
+vim.g.loaded_node_provider = 0
+vim.g.loaded_perl_provider = 0
+vim.g.loaded_ruby_provider = 0
+
 -- Don't redraw during macros/scripts
 opt.lazyredraw = true
 -- Faster terminal connection
 opt.ttyfast = true
+-- syntax highlight optimization
+opt.synmaxcol = 200
+-- turn off swapfile
+opt.swapfile = false
+-- turn off backupfile
+opt.backup = false
+opt.writebackup = false
+-- Save undo history
+opt.undofile = true
 
 -- Make jumplist behave like a stack
 opt.jumpoptions = 'stack'
@@ -86,8 +101,6 @@ opt.cmdheight = 1
 -- backspace
 opt.backspace = 'indent,eol,start' -- allow backspace on indent, end of line or insert mode start position
 
--- turn off swapfile
-opt.swapfile = false
 
 -- turn spellcheck
 -- opt.spelllang = en_us
@@ -118,15 +131,12 @@ end)
 -- Enable break indent
 opt.breakindent = true
 
--- Save undo history
-opt.undofile = true
-
 -- Case-insensitive searching UNLESS \C or one or more capital letters in the search term
 opt.ignorecase = true
 opt.smartcase = true
 
 -- Decrease update time
-opt.updatetime = 250
+opt.updatetime = 4000
 
 -- Decrease mapped sequence wait time
 opt.timeoutlen = 300
@@ -140,4 +150,3 @@ opt.inccommand = 'split'
 
 -- Minimal number of screen lines to keep above and below the cursor.
 -- opt.scrolloff = 15
-
