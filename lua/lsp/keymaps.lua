@@ -36,6 +36,7 @@ local function setup_keymaps(client, bufnr)
 
   -- Formatting
   map("n", "<leader>f", function() vim.lsp.buf.format { async = true } end, "Format document")
+  map("v", "<leader>f", function() vim.lsp.buf.format { async = true } end, "Format selection")
 
   -- LSP info
   map("n", "<leader>li", "<cmd>LspInfo<cr>", "LSP info")
