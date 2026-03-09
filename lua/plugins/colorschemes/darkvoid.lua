@@ -1,7 +1,7 @@
 return {
   {
     'aliqyan-21/darkvoid.nvim',
-    enabled = true,
+    enabled = false,
     priority = 1000,
     config = function()
       require('darkvoid').setup {
