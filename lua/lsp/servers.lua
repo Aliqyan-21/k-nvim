@@ -4,7 +4,6 @@ require("neodev").setup({
   lspconfig = false -- Critical: Prevents automatic LSP setup
 })
 
-local lspconfig = require("lspconfig")
 local mason_lspconfig = require("mason-lspconfig")
 
 -- Get capabilities
@@ -17,7 +16,7 @@ local on_init = function(client)
 end
 
 -- First: Configure Lua LSP separately before Mason
-lspconfig.lua_ls.setup({
+vim.lsp.config('lua_ls', {
   capabilities = capabilities,
   on_init = on_init,
   settings = {
@@ -55,7 +54,6 @@ local server_configs = {
 mason_lspconfig.setup({
   ensure_installed = { "lua_ls", "jsonls", "cssls", "html", "clangd", "gopls", "zls" },
   automatic_installation = true,
-  automatic_enable = false -- Prevents automatic setup
 })
 
 -- Get installed servers
@@ -74,12 +72,13 @@ for _, server_name in ipairs(installed_servers) do
       config = vim.tbl_deep_extend("force", config, server_configs[server_name])
     end
 
-    lspconfig[server_name].setup(config)
+    vim.lsp.config(server_name, config)
+    vim.lsp.enable(server_name)
   end
 end
 
 -- Manual Nim configuration
-lspconfig.nim_langserver.setup({
+vim.lsp.config('nim_langserver', {
   capabilities = capabilities,
   on_init = on_init,
   cmd = { "nimlangserver" },
@@ -88,6 +87,7 @@ lspconfig.nim_langserver.setup({
     nim = { nimsuggestPath = "/home/aliqyanabid/.nimble/bin/nimsuggest" }
   }
 })
+vim.lsp.enable('nim_langserver')
 
 -- Disable notifications
 vim.lsp.handlers["window/showMessage"] = function() end
