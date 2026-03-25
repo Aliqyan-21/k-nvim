@@ -8,6 +8,7 @@ vim.g.loaded_ruby_provider = 0
 
 -- Don't redraw during macros/scripts
 opt.lazyredraw = true
+opt.redrawtime = 1500
 -- Faster terminal connection
 opt.ttyfast = true
 -- syntax highlight optimization
@@ -136,7 +137,7 @@ opt.ignorecase = true
 opt.smartcase = true
 
 -- Decrease update time
-opt.updatetime = 4000
+opt.updatetime = 300
 
 -- Decrease mapped sequence wait time
 opt.timeoutlen = 300
