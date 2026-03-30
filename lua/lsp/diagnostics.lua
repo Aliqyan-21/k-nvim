@@ -14,3 +14,14 @@ vim.diagnostic.config({
   --   },
   -- },
 })
+
+vim.api.nvim_create_autocmd('LspProgress', {
+  callback = function(ev)
+    local spinner = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" }
+    vim.notify(vim.lsp.status(), vim.log.levels.INFO, {
+      id = 'lsp_progress',
+      title = 'LSP Working...',
+      icon = spinner[math.floor(vim.uv.hrtime() / 1e8) % #spinner + 1],
+    })
+  end,
+})
