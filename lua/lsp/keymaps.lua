@@ -1,5 +1,5 @@
 -- Function to set key mappings when a language server attaches
-local function setup_keymaps(client, bufnr)
+local function setup_keymaps(_, bufnr)
   -- Helper for setting keymaps
   local map = function(mode, key, action, desc)
     local opts = { buffer = bufnr, noremap = true, silent = true, desc = desc }

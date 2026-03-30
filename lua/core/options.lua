@@ -6,11 +6,6 @@ vim.g.loaded_node_provider = 0
 vim.g.loaded_perl_provider = 0
 vim.g.loaded_ruby_provider = 0
 
--- Don't redraw during macros/scripts
-opt.lazyredraw = true
-opt.redrawtime = 1500
--- Faster terminal connection
-opt.ttyfast = true
 -- syntax highlight optimization
 opt.synmaxcol = 200
 -- turn off swapfile
@@ -151,3 +146,5 @@ opt.inccommand = 'split'
 
 -- Minimal number of screen lines to keep above and below the cursor.
 -- opt.scrolloff = 15
+
+opt.virtualedit = 'block'
