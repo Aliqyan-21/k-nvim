@@ -1,11 +1,5 @@
 local opt = vim.opt -- for conciseness
 
--- not sure
-vim.g.loaded_python_provider = 0
-vim.g.loaded_node_provider = 0
-vim.g.loaded_perl_provider = 0
-vim.g.loaded_ruby_provider = 0
-
 -- syntax highlight optimization
 opt.synmaxcol = 200
 -- turn off swapfile
@@ -59,10 +53,6 @@ opt.showmode = false
 
 -- to make the lsp suggestion transparent
 -- opt.pumblend = 30
-
--- line numbers
-opt.relativenumber = true -- show relative line numbers
-opt.number = true         -- shows absolute line number on cursor line (when relative number is on)
 
 -- tabs & indentation
 opt.tabstop = 2       -- 2 spaces for tabs (prettier default)

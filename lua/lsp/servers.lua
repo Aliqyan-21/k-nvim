@@ -26,7 +26,12 @@ local configs = {
     settings = {
       nim = { nimsuggestPath = vim.fn.expand("~/.nimble/bin/nimsuggest") }
     }
-  }
+  },
+  idris2_lsp = {
+    cmd = { "idris2-lsp" },
+    filetypes = { "idris2" },
+    root_markers = { "*.ipkg", ".git" },
+  },
 }
 
 -- Mason-LSPconfig setup
@@ -38,6 +43,8 @@ mason_lspconfig.setup({
 -- config, enable
 local all_servers = mason_lspconfig.get_installed_servers()
 table.insert(all_servers, "nim_langserver")
+table.insert(all_servers, "racket_langserver")
+table.insert(all_servers, "idris2_lsp")
 for _, server in ipairs(all_servers) do
   local config = vim.tbl_deep_extend("force", {
     capabilities = capabilities,

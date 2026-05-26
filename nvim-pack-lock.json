@@ -44,6 +44,10 @@
       "rev": "1bc17e3e42ea3c46b33c0bbad6a880792692a1b3",
       "src": "https://github.com/ThePrimeagen/harpoon"
     },
+    "lackluster.nvim": {
+      "rev": "70dd682e564784893b984deb51dd5ddd263c8cc7",
+      "src": "https://github.com/slugbyte/lackluster.nvim"
+    },
     "lspkind.nvim": {
       "rev": "c7274c48137396526b59d86232eabcdc7fed8a32",
       "src": "https://github.com/onsails/lspkind.nvim"

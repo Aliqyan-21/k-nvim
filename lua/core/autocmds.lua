@@ -38,3 +38,24 @@ vim.keymap.set('n', '<Leader>wns', function()
 end, { desc = 'Trim trailing whitespace' })
 
 vim.cmd [[autocmd BufRead,BufNewFile *.sd7 set filetype=seed7]]
+
+local autosave_enabled = false
+local function autosave()
+  if autosave_enabled and vim.bo.modified and vim.bo.buftype == "" then
+    vim.cmd("silent! write")
+  end
+end
+
+local group = vim.api.nvim_create_augroup("AutoSaveGroup", { clear = true })
+vim.api.nvim_create_autocmd({ "TextChanged", "TextChangedI" }, {
+  group = group,
+  pattern = "*",
+  nested = true,
+  callback = autosave,
+})
+local function toggle_autosave()
+  autosave_enabled = not autosave_enabled
+  print("Auto-save " .. (autosave_enabled and "ENABLED" or "DISABLED"))
+end
+
+vim.api.nvim_create_user_command("AutoSave", toggle_autosave, {})

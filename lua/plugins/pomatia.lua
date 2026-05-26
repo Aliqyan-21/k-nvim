@@ -1,5 +1,6 @@
 priority = 1000,
 require('pomatia').setup {
-  transparent = true,
+  variant = "lucid",
+  transparent = false,
 }
 vim.cmd 'colorscheme pomatia'
