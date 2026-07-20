@@ -20,31 +20,27 @@ local configs = {
       },
     },
   },
-  nim_langserver = {
-    cmd = { "nimlangserver" },
-    filetypes = { "nim", "nimrod" },
-    settings = {
-      nim = { nimsuggestPath = vim.fn.expand("~/.nimble/bin/nimsuggest") }
-    }
-  },
-  idris2_lsp = {
-    cmd = { "idris2-lsp" },
-    filetypes = { "idris2" },
-    root_markers = { "*.ipkg", ".git" },
+  ols = {
+    init_options = {
+      collections = {
+        { name = "core",   path = vim.fn.expand('~/Downloads/dev_tools/Odin/core') },
+        { name = "shared", path = vim.fn.expand('~/Downloads/dev_tools/Odin/shared') },
+        { name = "vendor", path = vim.fn.expand('~/Downloads/dev_tools/Odin/vendor') },
+        { name = "base",   path = vim.fn.expand('~/Downloads/dev_tools/Odin/base') },
+      },
+    },
   },
 }
 
 -- Mason-LSPconfig setup
 mason_lspconfig.setup({
-  ensure_installed = { "lua_ls", "jsonls", "cssls", "html", "clangd", "gopls", "zls" },
+  ensure_installed = { "lua_ls", "jsonls", "cssls", "html", "clangd", "gopls", "ols", "zls" },
   automatic_installation = true,
 })
 
 -- config, enable
 local all_servers = mason_lspconfig.get_installed_servers()
-table.insert(all_servers, "nim_langserver")
-table.insert(all_servers, "racket_langserver")
-table.insert(all_servers, "idris2_lsp")
+-- table.insert(all_servers, "anyls")
 for _, server in ipairs(all_servers) do
   local config = vim.tbl_deep_extend("force", {
     capabilities = capabilities,
